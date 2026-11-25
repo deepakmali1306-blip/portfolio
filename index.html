@@ -49,19 +49,21 @@
   /* ---------- Hero (matches template) ---------- */
   .hero{position:relative;height:100vh;min-height:620px;max-height:1000px;overflow:hidden}
   .hero-word{
-    position:absolute;left:50%;top:50%;transform:translate(-50%,-46%);
+    position:absolute;left:50%;top:42%;transform:translate(-50%,-46%);
     font-family:var(--display);color:var(--red);
-    font-size:25vw;line-height:.9;letter-spacing:-.005em;white-space:nowrap;
+    font-size:min(25vw,40vh);line-height:.9;letter-spacing:-.005em;white-space:nowrap;
     user-select:none;
   }
   .hero-photo{
     position:absolute;right:max(5vw,calc((100vw - 1200px)/2));top:13%;
     height:150%;width:auto;max-width:none;
-    filter:drop-shadow(0 20px 30px rgba(30,28,26,.18));
+    /* visible part ends at (100%-13%)/150% = 58% of the image: fade into the page there */
+    -webkit-mask-image:linear-gradient(to bottom,#000 47%,transparent 58%);
+    mask-image:linear-gradient(to bottom,#000 47%,transparent 58%);
   }
   @keyframes rise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
   @keyframes fade{from{opacity:0}to{opacity:1}}
-  .hero-meta{position:absolute;left:0;right:0;bottom:44px;z-index:2}
+  .hero-meta{position:absolute;left:0;right:0;bottom:44px;z-index:3}
   .hero-intro{max-width:min(520px,52vw)}
   .hero-intro .role{font-size:clamp(1.05rem,1.6vw,1.35rem);font-weight:500;line-height:1.35;margin-bottom:22px}
   .hero-intro .role em{font-style:normal;color:var(--red);font-weight:600}
@@ -184,8 +186,7 @@
   }
   @media (max-width:640px){
     .hero{height:88vh;min-height:560px}
-    .hero-word{font-size:24vw;top:42%}
-    .hero-word{top:30%}
+    .hero-word{font-size:24vw;top:30%}
     .hero-photo{height:82%;top:auto;bottom:0;right:-6%;filter:none;-webkit-mask-image:linear-gradient(to bottom,#000 82%,transparent 100%);mask-image:linear-gradient(to bottom,#000 82%,transparent 100%)}
     .hero-meta{bottom:28px}
     .hero-intro{max-width:56%}
